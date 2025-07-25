@@ -1,0 +1,8 @@
+🔢 Qué va a tener nuestra calculadora
+Dos números ingresados por el usuario.
+
+Un selector para elegir la operación: suma, resta, multiplicación o división.
+
+Un botón para enviar.
+
+PHP procesa el resultado y lo muestra.
