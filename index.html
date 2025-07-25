@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <title>🧷 Hevieri Tools</title>
+  <style>
+    :root {
+      --bg: #202537;
+      --panel-bg: #1e253a;
+      --text: #ffffff;
+      --accent: #f7c948;
+      --btn-bg: rgba(242, 108, 61, 0.15);
+      --btn-border: var(--accent);
+      --btn-hover: rgba(242, 108, 61, 0.25);
+      --radius: 12px;
+      --shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      font-family: 'Segoe UI', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 40px 20px;
+    }
+
+    h1 {
+      font-size: 2.3rem;
+      margin-bottom: 30px;
+      text-align: center;
+      color: var(--text);
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 8px;
+    }
+
+    .grid-container {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 24px;
+      width: 100%;
+      max-width: 880px;
+    }
+
+    .panel {
+      background: var(--panel-bg);
+      padding: 24px 20px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      border-left: 4px solid var(--accent);
+    }
+
+    .panel h2 {
+      font-size: 1.2rem;
+      margin-bottom: 16px;
+      text-align: center;
+      color: var(--text);
+      position: relative;
+    }
+    .panel h2::after {
+      content: '';
+      display: block;
+      width: 40px;
+      height: 3px;
+      background: var(--accent);
+      margin: 8px auto 0;
+      border-radius: 2px;
+    }
+
+    .tool-btn {
+      display: block;
+      width: 100%;
+      padding: 12px;
+      margin: 8px 0;
+      background: var(--btn-bg);
+      border: 1px solid var(--btn-border);
+      border-radius: var(--radius);
+      color: var(--text);
+      font-weight: 600;
+      font-size: 1rem;
+      text-align: center;
+      text-decoration: none;
+      transition: background 0.2s ease, transform 0.2s ease;
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .tool-btn:hover {
+      background: var(--btn-hover);
+      transform: scale(1.02);
+    }
+
+    @media (max-width: 500px) {
+      h1 {
+        font-size: 1.8rem;
+      }
+      .tool-btn {
+        font-size: 0.95rem;
+        padding: 10px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>🧷 Hevieri Tools</h1>
+
+  <div class="grid-container">
+    <div class="panel">
+      <h2>🧮 Calculadores</h2>
+      <a href="calculadora.html" class="tool-btn">🧠 Básica</a>
+      <a href="descuento.html" class="tool-btn">💸 Precio con descuento</a>
+      <a href="proporcional.html" class="tool-btn">📦 Precio proporcional</a>
+      <a href="coniva.html" class="tool-btn">🧾 Con IVA</a>
+      <a href="cuotas.html" class="tool-btn">💳 Cuotas</a>
+    </div>
+
+    <div class="panel">
+      <h2>🌐 Convertidores</h2>
+      <a href="temperatura.html" class="tool-btn">🌡️ Celsius ↔ Fahrenheit</a>
+      <a href="peso.html" class="tool-btn">⚖️ Kg ↔ Libras</a>
+      <a href="distancia.html" class="tool-btn">📏 Km ↔ Millas</a>
+      <a href="moneda.html" class="tool-btn">💱 Dólar ↔ Pesos</a>
+      
+    </div>
+  </div>
+<footer style="margin-top: 40px; font-size: 0.7rem; font-style: italic; font-family: 'Segoe UI', sans-serif; color: var(--accent); text-align: center;">
+  Hevieri Tools · diseño didáctico y funcional
+</footer>
+
+
+</body>
+</html>

@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Calculadora de descuentos · Hevieri Tools</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    :root {
+      --bg: #202537;
+      --panel-bg: #1e253a;
+      --text: #ffffff;
+      --accent: #f7c948;
+      --btn-bg: rgba(242, 108, 61, 0.15);
+      --btn-border: var(--accent);
+      --btn-hover: rgba(242, 108, 61, 0.25);
+      --radius: 12px;
+      --shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .discount-box {
+      background: var(--panel-bg);
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      width: 360px;
+      text-align: center;
+      border-left: 4px solid var(--accent);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 6px;
+      color: var(--text);
+    }
+
+    input {
+      width: 80%;
+      padding: 12px;
+      margin: 10px 0;
+      border: 1px solid var(--btn-border);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      background: var(--btn-bg);
+      color: var(--text);
+    }
+
+    button {
+      padding: 12px 25px;
+      border-radius: var(--radius);
+      border: 1px solid var(--btn-border);
+      background: var(--btn-bg);
+      color: var(--text);
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background: var(--btn-hover);
+      transform: scale(1.02);
+    }
+
+    #result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      line-height: 1.6;
+    }
+
+    .price {
+      color: #00ffd2;
+    }
+
+    .saving {
+      color: #ff6ad5;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.7rem;
+      font-style: italic;
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--accent);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div>
+    <div class="discount-box">
+      <h2>🛍️ Calculadora de descuento</h2>
+      <input type="number" id="precio" placeholder="Precio original" />
+      <input type="number" id="descuento" placeholder="Descuento (%)" />
+      <button onclick="calcular()">Calcular</button>
+      <div id="result">💸 Ingresá los datos</div>
+    </div>
+
+    <footer>
+      Hevieri Tools · diseño didáctico y funcional por Erika H.
+    </footer>
+  </div>
+
+  <script>
+    function calcular() {
+      const precio = parseFloat(document.getElementById("precio").value);
+      const descuento = parseFloat(document.getElementById("descuento").value);
+
+      if (isNaN(precio) || isNaN(descuento)) {
+        document.getElementById("result").innerHTML = "⚠️ Ingresá valores válidos.";
+        return;
+      }
+
+      const rebaja = (precio * descuento) / 100;
+      const final = precio - rebaja;
+
+      document.getElementById("result").innerHTML = `
+        📉 Lo que te ahorrás es: <span class="saving">$${rebaja.toFixed(2)}</span><br/>
+        💰 Valor final del producto: <span class="price">$${final.toFixed(2)}</span>
+      `;
+    }
+  </script>
+
+</body>
+</html>

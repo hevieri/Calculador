@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Calculadora by Hevieri</title>
+  <style>
+    :root {
+      --bg: #202537;
+      --panel-bg: #1e253a;
+      --text: #ffffff;
+      --accent: #f7c948;
+      --btn-bg: rgba(242, 108, 61, 0.15);
+      --btn-border: var(--accent);
+      --btn-hover: rgba(242, 108, 61, 0.25);
+      --radius: 12px;
+      --shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+    }
+
+    .calculator {
+      background: var(--panel-bg);
+      padding: 24px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      width: 320px;
+      border-left: 4px solid var(--accent);
+    }
+
+    .display {
+      background: #000;
+      color: var(--accent);
+      font-size: 2rem;
+      padding: 15px;
+      text-align: right;
+      border-radius: var(--radius);
+      margin-bottom: 15px;
+      overflow-x: auto;
+      box-shadow: inset 0 0 5px rgba(0,0,0,0.5);
+    }
+
+    .buttons {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    button {
+      font-size: 1.2rem;
+      padding: 14px;
+      border: 1px solid var(--btn-border);
+      border-radius: var(--radius);
+      background: var(--btn-bg);
+      color: var(--text);
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background: var(--btn-hover);
+      transform: scale(1.02);
+    }
+
+    .clear {
+      background: rgba(220, 20, 60, 0.25);
+      border-color: crimson;
+    }
+
+    .equal {
+      background: rgba(0, 200, 150, 0.2);
+      border-color: #00c896;
+    }
+
+    .percent {
+      background: rgba(180, 114, 255, 0.2);
+      border-color: #b472ff;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.7rem;
+      font-style: italic;
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--accent);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div>
+    <div class="calculator">
+      <div id="display" class="display">0</div>
+      <div class="buttons">
+        <button>7</button><button>8</button><button>9</button><button>/</button>
+        <button>4</button><button>5</button><button>6</button><button>*</button>
+        <button>1</button><button>2</button><button>3</button><button>-</button>
+        <button>0</button><button>.</button><button class="equal">=</button><button>+</button>
+        <button class="clear">C</button><button class="percent">%</button>
+      </div>
+    </div>
+
+    <footer>
+      Hevieri Tools · diseño didáctico y funcional por Erika H.
+    </footer>
+  </div>
+
+  <script>
+    const display = document.getElementById('display');
+    const buttons = document.querySelectorAll('button');
+    let current = '';
+    let resetNext = false;
+
+    buttons.forEach(button => {
+      button.addEventListener('click', () => {
+        const value = button.textContent;
+
+        if (value === 'C') {
+          current = '';
+          display.textContent = '0';
+          return;
+        }
+
+        if (value === '%') {
+          try {
+            current = (eval(current) / 100).toString();
+            display.textContent = current;
+            resetNext = true;
+          } catch {
+            display.textContent = 'Error';
+            current = '';
+          }
+          return;
+        }
+
+        if (value === '=') {
+          try {
+            current = eval(current).toString();
+            display.textContent = current;
+            resetNext = true;
+          } catch {
+            display.textContent = 'Error';
+            current = '';
+          }
+          return;
+        }
+
+        if (resetNext) {
+          current = '';
+          resetNext = false;
+        }
+
+        current += value;
+        display.textContent = current;
+      });
+    });
+  </script>
+
+</body>
+</html>

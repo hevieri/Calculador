@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Convertidor de Peso · Hevieri Tools</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    :root {
+      --bg: #202537;
+      --panel-bg: #1e253a;
+      --text: #ffffff;
+      --accent: #f7c948;
+      --btn-bg: rgba(242, 108, 61, 0.15);
+      --btn-border: var(--accent);
+      --btn-hover: rgba(242, 108, 61, 0.25);
+      --radius: 12px;
+      --shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .weight-box {
+      background: var(--panel-bg);
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      width: 360px;
+      text-align: center;
+      border-left: 4px solid var(--accent);
+    }
+
+    h2 {
+      margin-bottom: 20px;
+      font-size: 1.4rem;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 6px;
+      color: var(--text);
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      margin-bottom: 10px;
+      border: 1px solid var(--btn-border);
+      border-radius: var(--radius);
+      font-size: 1rem;
+      background: var(--btn-bg);
+      color: var(--text);
+    }
+
+    button {
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--btn-border);
+      background: var(--btn-bg);
+      color: var(--text);
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 5px;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background: var(--btn-hover);
+      transform: scale(1.02);
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.2rem;
+      color: var(--accent);
+    }
+
+    .icon {
+      font-size: 2rem;
+      margin-bottom: 10px;
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.7rem;
+      font-style: italic;
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--accent);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div>
+    <div class="weight-box">
+      <h2>⚖️ Convertidor de Peso</h2>
+      <div class="icon" id="icono">📦</div>
+      <input type="number" id="valor" placeholder="Cantidad">
+      <select id="tipo" onchange="actualizarIcono()">
+        <option value="kgToLb">Kilogramos → Libras</option>
+        <option value="lbToKg">Libras → Kilogramos</option>
+      </select>
+      <button onclick="convertir()">Convertir</button>
+      <div id="resultado" class="result">🔄 Resultado</div>
+    </div>
+
+    <footer>
+      Hevieri Tools · diseño didáctico y funcional por Erika H.
+    </footer>
+  </div>
+
+  <script>
+    function actualizarIcono() {
+      const tipo = document.getElementById("tipo").value;
+      const icono = document.getElementById("icono");
+      icono.textContent = tipo === "kgToLb" ? "🏋️" : "📦";
+    }
+
+    function convertir() {
+      const valor = parseFloat(document.getElementById("valor").value);
+      const tipo = document.getElementById("tipo").value;
+      const res = document.getElementById("resultado");
+
+      if (isNaN(valor)) {
+        res.textContent = "⚠️ Ingresá un número válido";
+        return;
+      }
+
+      let resultado;
+
+      if (tipo === "kgToLb") {
+        resultado = (valor * 2.20462).toFixed(2);
+        res.textContent = `${valor} kg → ${resultado} lb 🏋️`;
+      } else {
+        resultado = (valor / 2.20462).toFixed(2);
+        res.textContent = `${valor} lb → ${resultado} kg 📦`;
+      }
+    }
+
+    actualizarIcono();
+  </script>
+
+</body>
+</html>

@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <title>Precio proporcional · Hevieri Tools</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <style>
+    :root {
+      --bg: #202537;
+      --panel-bg: #1e253a;
+      --text: #ffffff;
+      --accent: #f7c948;
+      --btn-bg: rgba(242, 108, 61, 0.15);
+      --btn-border: var(--accent);
+      --btn-hover: rgba(242, 108, 61, 0.25);
+      --radius: 12px;
+      --shadow: 0 2px 8px rgba(0,0,0,0.3);
+    }
+
+    body {
+      background: var(--bg);
+      color: var(--text);
+      font-family: 'Segoe UI', sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      padding: 20px;
+      margin: 0;
+    }
+
+    .calculator {
+      background: var(--panel-bg);
+      padding: 30px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
+      width: 360px;
+      text-align: center;
+      border-left: 4px solid var(--accent);
+    }
+
+    h2 {
+      margin-bottom: 12px;
+      font-size: 1.4rem;
+      border-bottom: 2px solid var(--accent);
+      padding-bottom: 6px;
+      color: var(--text);
+    }
+
+    .guide {
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      color: #cccccc;
+    }
+
+    label {
+      font-size: 0.95rem;
+      margin-bottom: 6px;
+      display: block;
+      text-align: left;
+    }
+
+    input {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 15px;
+      border-radius: var(--radius);
+      border: 1px solid var(--btn-border);
+      background: var(--btn-bg);
+      color: var(--text);
+      font-size: 1rem;
+    }
+
+    button {
+      padding: 12px 20px;
+      border-radius: var(--radius);
+      border: 1px solid var(--btn-border);
+      background: var(--btn-bg);
+      color: var(--text);
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 10px;
+      transition: background 0.2s ease, transform 0.2s ease;
+    }
+
+    button:hover {
+      background: var(--btn-hover);
+      transform: scale(1.02);
+    }
+
+    .result {
+      margin-top: 20px;
+      font-size: 1.1rem;
+      color: var(--accent);
+    }
+
+    footer {
+      margin-top: 30px;
+      font-size: 0.7rem;
+      font-style: italic;
+      font-family: 'Segoe UI', sans-serif;
+      color: var(--accent);
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+
+  <div>
+    <div class="calculator">
+      <h2>📦 Calculador proporcional</h2>
+      <p class="guide">
+        Ingresá cuánto cuesta <strong>1 unidad</strong> del producto (ej: 1 kilo cuesta $300)<br/>
+        Después, poné cuántas unidades querés comprar y te decimos el precio total.
+      </p>
+
+      <label for="precioUnitario">💰 Precio de una unidad:</label>
+      <input type="number" id="precioUnitario" placeholder="Ejemplo: 300">
+
+      <label for="cantidad">📦 Cantidad que vas a comprar:</label>
+      <input type="number" id="cantidad" placeholder="Ejemplo: 5">
+
+      <button onclick="calcular()">Calcular precio total</button>
+
+      <div class="result" id="resultado">🔄 Esperando datos...</div>
+    </div>
+
+    <footer>
+      Hevieri Tools · diseño didáctico y funcional por Erika H.
+    </footer>
+  </div>
+
+  <script>
+    function calcular() {
+      const precioUnitario = parseFloat(document.getElementById("precioUnitario").value);
+      const cantidad = parseFloat(document.getElementById("cantidad").value);
+      const res = document.getElementById("resultado");
+
+      if (isNaN(precioUnitario) || isNaN(cantidad)) {
+        res.textContent = "⚠️ Ingresá números válidos en los dos campos.";
+        return;
+      }
+
+      const total = (precioUnitario * cantidad).toFixed(2);
+      res.textContent = `✅ ${cantidad} unidad(es) costarán $${total}`;
+    }
+  </script>
+
+</body>
+</html>
